@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <h3>Clinic CMS</h3>
+  <div id="menu"></div>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<div class="main">
+  <h2 id="welcome"></h2>
+
+  <div id="content"></div>
+
+</div>
+
+<script src="app.js"></script>
+<script>
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+
+  if(!user){
+    window.location.href = "index.html";
+  }
+
+  document.getElementById("welcome").innerText = "Welcome " + user.role.toUpperCase();
+
+  const menu = document.getElementById("menu");
+
+  if(user.role === "admin" || user.role === "receptionist"){
+    menu.innerHTML += `<button onclick="showPatients()">Patients</button>`;
+  }
+
+  if(user.role === "doctor" || user.role === "receptionist"){
+    menu.innerHTML += `<button onclick="showAppointments()">Appointments</button>`;
+  }
+
+  if(user.role === "doctor"){
+    menu.innerHTML += `<button onclick="showPrescriptions()">Prescriptions</button>`;
+  }
+
+menu.innerHTML += `<button onclick="showPatientTimeline()">Timeline</button>`;
+
+  function logout(){
+    localStorage.removeItem("currentUser");
+    window.location.href = "index.html";
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>

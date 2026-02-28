@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClinicOS | Secure Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+
+    <div class="ambient-circle circle-1"></div>
+    <div class="ambient-circle circle-2"></div>
+
+    <div class="auth-container">
+        
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="brand-logo">
+                    <i class="ph-fill ph-stethoscope"></i>
+                </div>
+                <h2>ClinicOS</h2>
+                <p>Sign in to your workspace</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); login();" class="auth-form">
+                
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="ph ph-envelope-simple"></i>
+                        <input type="email" id="email" placeholder="doctor@clinic.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-row">
+                        <label for="password">Password</label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="ph ph-lock-key"></i>
+                        <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+                        <i class="ph ph-eye-slash toggle-password" onclick="togglePassword()"></i>
+                    </div>
+                </div>
+
+                <div id="error-msg" class="error-alert hidden">
+                    <i class="ph-fill ph-warning-circle"></i>
+                    <span id="error-text">Invalid credentials.</span>
+                </div>
+
+                <button type="submit" id="login-btn" class="btn-primary">
+                    <span>Sign In</span>
+                    <i class="ph ph-arrow-right"></i>
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+                <p>Need access? <a href="#">Contact Admin</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
